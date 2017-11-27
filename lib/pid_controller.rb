@@ -1,5 +1,5 @@
-require "pid_controller/version"
+require 'pid_controller/version'
 
-module PidController
-  # Your code goes here...
+# https://en.wikipedia.org/wiki/PID_controller
+class PidController
 end
