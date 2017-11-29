@@ -58,4 +58,28 @@ RSpec.describe PidController do
       end
     end
   end
+
+  context 'with output bounds' do
+    subject { PidController.new(setpoint: 100.0, kp: 100.0, output_min: 0.0, output_max: 1000.0) }
+    it 'checks output_min' do
+      expect(subject << 1000).to eq(0.0)
+    end
+    it 'checks output_max' do
+      expect(subject << -1000).to eq(1000.0)
+    end
+  end
+
+  context 'with integral bounds' do
+    subject { PidController.new(setpoint: 100.0, kp: 0.0, ki: 100.0, integral_min: 0.0, integral_max: 1000.0) }
+    it 'checks integral_min' do
+      expect(subject << 1000).to eq(0.0)
+      expect(subject << 1000).to eq(0.0)
+      expect(subject << 1000).to eq(0.0)
+    end
+    it 'checks integral_max' do
+      expect(subject << -1000).to eq(0.0)
+      expect(subject << -1000).to eq(100_000.0)
+      expect(subject << -1000).to eq(100_000.0)
+    end
+  end
 end
