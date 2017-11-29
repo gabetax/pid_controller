@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'pry'
 require 'pid_controller'
 
 RSpec.configure do |config|

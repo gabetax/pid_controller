@@ -1,0 +1,7 @@
+AllCops:
+  DisplayCopNames: true
+
+Metrics/BlockLength:
+  ExcludedMethods:
+    - context
+    - describe

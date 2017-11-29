@@ -1,28 +1,26 @@
 # PidController
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pid_controller`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is a Ruby implementation of a [PID Controller](https://en.wikipedia.org/wiki/PID_controller). A PID controller is a feedback system that is configured with a target setpoint, can read measurements of the system to see how close we are to the setpoint, and will omit an output. Every day examples include:
 
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'pid_controller'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install pid_controller
+- Cruise control
+- Thermostats
+- Quadcopters (appearently, because they predominate search results)
+- Database load (yay! This is why the purpose I'm actually writing this for).
 
 ## Usage
 
-TODO: Write usage instructions here
+I mentioned databases, so here's an example of how we can prevent a low priority task (e.g. bulk deletion) from contending with customer traffic:
+
+```ruby
+sensor = MySQLSensor.new # Use your imagination
+controller = PIDController.new(setpoint: 60.0, kp: 5.0, ki: 1.0, kd: 0.1)
+
+Event.where(account_id: account_id).in_batches do |relation|
+  relation.delete_all
+  backoff = controller << sensor.cpu_utilization
+  sleep backoff if backoff > 0
+end
+```
 
 ## Development
 
