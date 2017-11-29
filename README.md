@@ -1,4 +1,6 @@
 # PidController
+[![Gem Version](https://badge.fury.io/rb/pid_controller.svg)](https://badge.fury.io/rb/pid_controller)
+[![Build Status](https://travis-ci.org/gabetax/pid_controller.svg?branch=master)](https://travis-ci.org/gabetax/pid_controller)
 
 This is a Ruby implementation of a [PID Controller](https://en.wikipedia.org/wiki/PID_controller). A PID controller is a feedback system that is configured with a target setpoint, can read measurements of the system to see how close we are to the setpoint, and will omit an output. Every day examples include:
 
