@@ -1,4 +1,5 @@
 # PidController
+
 [![Gem Version](https://badge.fury.io/rb/pid_controller.svg)](https://badge.fury.io/rb/pid_controller)
 [![Build Status](https://travis-ci.org/gabetax/pid_controller.svg?branch=master)](https://travis-ci.org/gabetax/pid_controller)
 
@@ -15,11 +16,18 @@ I mentioned databases, so here's an example of how we can prevent a low priority
 
 ```ruby
 sensor = MySQLSensor.new # Use your imagination
-controller = PIDController.new(setpoint: 60.0, kp: 5.0, ki: 1.0, kd: 0.1)
+controller = PIDController.new(
+  setpoint: 60.0,
+  kp: 5.0,
+  ki: 1.0,
+  kd: 0.1,
+  output_max: 0.0,
+  integral_max: 0.0
+  )
 
 Event.where(account_id: account_id).in_batches do |relation|
   relation.delete_all
-  backoff = controller << sensor.cpu_utilization
+  backoff = -1 * controller << sensor.cpu_utilization
   sleep backoff if backoff > 0
 end
 ```
@@ -28,8 +36,6 @@ end
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/gabetax/pid_controller.
+Bug reports and pull requests are welcome on GitHub at <https://github.com/gabetax/pid_controller.>
