@@ -73,7 +73,7 @@ class PidController
   end
 
   def p_term
-    kp * @last_error
+    kp * (@last_error || 0.0)
   end
 
   def i_term
