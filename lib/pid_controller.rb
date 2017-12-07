@@ -60,7 +60,7 @@ class PidController
 
     if dt > 0.0
       @integral = (@integral + error * dt).clamp(@integral_min, @integral_max)
-      @derivative = (error - @last_error) / dt
+      @derivative = (error - @last_error) / dt if @last_error
     end
 
     @last_error = error
