@@ -67,6 +67,14 @@ RSpec.describe PidController do
     end
   end
 
+  describe '#update_with_duration' do
+    context 'without any measurements' do
+      specify do
+        expect(subject.update_with_duration(10, 1.0)).to eq(0.0)
+      end
+    end
+  end
+
   context 'with output bounds' do
     subject { PidController.new(setpoint: 100.0, kp: 100.0, output_min: 0.0, output_max: 1000.0) }
     it 'checks output_min' do
