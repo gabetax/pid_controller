@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'A Ruby PID controller implementation'
   spec.homepage      = 'https://github.com/gabetax/pid_controller'
+  spec.license       = 'Apache License Version 2.0'
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
