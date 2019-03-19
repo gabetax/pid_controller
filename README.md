@@ -10,6 +10,11 @@ This is a Ruby implementation of a [PID Controller](https://en.wikipedia.org/wik
 - Quadcopters (appearently, because they predominate search results)
 - Database load (yay! This is why the purpose I'm actually writing this for).
 
+## Recommended reading
+
+- [PID without a PhD](https://www.wescottdesign.com/articles/pid/pidWithoutAPhd.pdf)
+- [Throttling Utilities in the IBM DB2 Universal Database Server](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.660.9095&rep=rep1&type=pdf)
+
 ## Usage
 
 I mentioned databases, so here's an example of how we can prevent a low priority task (e.g. bulk deletion) from contending with customer traffic:
